@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogSphere - Home</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <% bloglist.forEach(element => { %>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="/uploads/<%= element.image %>" class="card-img-top" alt="<%= element.title %>" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= element.title %></h5>
+                            <p class="card-text"><%= element.content.slice(0,86) %>...</p>
+                            <form action="/blogs/view/<%= element._id %>" method="get">
+                                <button type="submit" class="btn btn-primary">View</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <%- include('partials/script') %>
+</body>
+</html>

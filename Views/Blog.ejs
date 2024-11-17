@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogSphere - Blog</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="container mt-5">
+        <!-- Blog Heading -->
+        <h1 class="mb-4 text-center">BlogSphere</h1>
+
+        <!-- Blog Details Section -->
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Blog Content -->
+                <div class="card mb-4">
+                    <img src="/uploads/<%= blog.image %>" class="card-img-top" alt="Blog Image" style="height: 300px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= blog.title %></h5>
+                        <p class="card-text"><%= blog.content %></p>
+                        <p class="card-text">
+                            <small class="text-muted">Created by <strong><%= user.name %></strong> on <time datetime="2024-08-16"><%= new Date(blog.createdAt).toUTCString() %></time></small>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Comments</h5>
+                        <!-- Comment Form -->
+                        <form action="/comments/add" method="post">
+                            <div class="mb-3">
+                                <label for="commentName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="commentName" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="commentText" class="form-label">Comment</label>
+                                <textarea class="form-control" id="commentText" name="comment" rows="3" placeholder="Your Comment" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Comment</button>
+                        </form>
+
+                        <!-- Display Comments -->
+                        <div class="mt-4">
+                            <h6>Recent Comments:</h6>
+                            <div class="border p-3 mb-3 rounded">
+                                <strong>John Doe</strong> <small class="text-muted">on August 17, 2024</small>
+                                <p>This is a sample comment. Great blog post!</p>
+                            </div>
+                            <div class="border p-3 mb-3 rounded">
+                                <strong>Jane Smith</strong> <small class="text-muted">on August 17, 2024</small>
+                                <p>Thanks for sharing this information. Very helpful!</p>
+                            </div>
+                            <!-- Add more comments here as needed -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar or Additional Content (Optional) -->
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">About the Author</h5>
+                        <p class="card-text">
+                            <strong>Author Name</strong> is a blogger who writes about various topics. They have been in the field for X years and have a passion for sharing knowledge.
+                        </p>
+                    </div>
+                </div>
+                <!-- Add more sidebar content here if needed -->
+            </div>
+        </div>
+    </div>
+    <%- include('partials/script') %>
+</body>
+</html>
